@@ -27,7 +27,7 @@ module.exports.getProduct = (req, res) => {
 
 module.exports.updateProduct = (req, res) => {
     Product.findOneAndUpdate({_id: req.params.id}, req.body, {new:true})
-        .then(updatedProduct => response.json(updatedProduct))
+        .then(updatedProduct => res.json(updatedProduct))
         .catch(err => res.json(err))
 }
 
