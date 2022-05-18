@@ -6,7 +6,7 @@ import ProductList from '../components/ProductList'
 const Main = () => {
     const [products, setProducts] = useState([]);
     const [loaded, setLoaded] = useState(false);
-    const [refresh, setRefresh] = useState(true)
+    const [refresh, setRefresh] = useState(true);
 
     useEffect( () => {
         axios.get('http://localhost:8000/api/products')
@@ -19,12 +19,13 @@ const Main = () => {
 
     const refreshed = () => {
         setRefresh(!refresh)
+        console.log(refresh)
     }
 
     return (
         <div>
             <ProductForm refreshed={refreshed} />
-            {loaded && <ProductList products={products} />}
+            {loaded && <ProductList products={products} refreshed={refreshed} />}
         </div>
     )
 }
