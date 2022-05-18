@@ -1,20 +1,24 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-const ProductForm = () => {
+const ProductForm = (props) => {
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState()
     const [description, setDescription] = useState("")
 
     const submitHandler = e => {
         e.preventDefault()
-        axios.post('http://localhost:8000/api/product', {
+        axios.post('http://localhost:8000/api/products', {
             title,
             price,
             description
         })
         .then(res=>console.log(res))
         .catch(err=>console.log(err))
+        props.refreshed()
+        setTitle("")
+        setPrice("")
+        setDescription("")
     }
 
     return (
